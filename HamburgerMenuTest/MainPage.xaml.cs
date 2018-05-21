@@ -30,8 +30,10 @@ namespace HamburgerMenuTest
         public MainPage()
         {
             this.InitializeComponent();
+            hamburgerMenuControl.UseNavigationViewWhenPossible = true;
             items = new ObservableCollection<MenuItem>(MenuItem.GetMainItems());
             hamburgerMenuControl.ItemsSource = items;
+            items.CollectionChanged += (sender, e) => { System.Diagnostics.Debug.WriteLine("Collection changed"); };
         }
 
         private void OnMenuItemClick(object sender, ItemClickEventArgs e)
@@ -48,11 +50,13 @@ namespace HamburgerMenuTest
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             UseNavigationView = true;
+            hamburgerMenuControl.UseNavigationViewWhenPossible = true;
         }
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             UseNavigationView = false;
+            hamburgerMenuControl.UseNavigationViewWhenPossible = false;
         }
     }
 
