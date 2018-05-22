@@ -22,7 +22,7 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <controls:HamburgerMenu x:Name="hamburgerMenuControl" PaneBackground="Black" Foreground="White" 
+        <controls:HamburgerMenu x:Name="hamburgerMenuControl" PaneBackground="Black" Foreground="White" ItemsSource="{x:Bind items}"
                                 ItemTemplate="{StaticResource DefaultTemplate}" ItemClick="OnMenuItemClick"
                                 OptionsItemTemplate="{StaticResource DefaultTemplate}" OptionsItemClick="OnMenuItemClick">
             <Frame x:Name="contentFrame" Foreground="Black"/>
@@ -30,6 +30,7 @@
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button Click="Button_Click">Add item</Button>
             <CheckBox Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" IsChecked="{x:Bind UseNavigationView}">Use navigation view</CheckBox>
+            <Button Click="Button_Click_1">Replace Item List</Button>
         </StackPanel>
     </Grid>
 </Page>

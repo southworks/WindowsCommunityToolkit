@@ -24,15 +24,14 @@ namespace HamburgerMenuTest
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private ObservableCollection<MenuItem> items;
+        public ObservableCollection<MenuItem> items { get; set; } = new ObservableCollection<MenuItem>(MenuItem.GetMainItems());
         public bool UseNavigationView { get; set; } = true;
 
         public MainPage()
         {
             this.InitializeComponent();
             hamburgerMenuControl.UseNavigationViewWhenPossible = true;
-            items = new ObservableCollection<MenuItem>(MenuItem.GetMainItems());
-            hamburgerMenuControl.ItemsSource = items;
+            //hamburgerMenuControl.ItemsSource = items;
             items.CollectionChanged += (sender, e) => { System.Diagnostics.Debug.WriteLine("Collection changed"); };
         }
 
@@ -57,6 +56,13 @@ namespace HamburgerMenuTest
         {
             UseNavigationView = false;
             hamburgerMenuControl.UseNavigationViewWhenPossible = false;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var newItemsList = new ObservableCollection<MenuItem>(items.ToList());
+            items = newItemsList;
+            //hamburgerMenuControl.ItemsSource = items;
         }
     }
 
