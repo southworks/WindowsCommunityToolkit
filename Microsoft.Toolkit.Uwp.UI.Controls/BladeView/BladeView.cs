@@ -135,10 +135,16 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
                 UpdateLayout();
 
                 // Need to do this because of touch. See more information here: https://github.com/Microsoft/WindowsCommunityToolkit/issues/760#issuecomment-276466464
-                await Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+
+                Windows.System.DispatcherQueue.GetForCurrentThread().TryEnqueue(Windows.System.DispatcherQueuePriority.Low, () =>
                 {
                     GetScrollViewer()?.ChangeView(_scrollViewer.ScrollableWidth, null, null);
                 });
+
+                //await Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                //{
+                //    GetScrollViewer()?.ChangeView(_scrollViewer.ScrollableWidth, null, null);
+                //});
 
                 return;
             }
