@@ -1,0 +1,16 @@
+﻿<Page
+    x:Class="ConnectedAnimationsTest.Page2"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ConnectedAnimationsTest"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="RootGrid">
+        <Rectangle Width="200" Height="200" animations:Connected.Key="searchResult" Fill="Coral"/>
+        <Button Click="Button_Click">Go back</Button>
+    </Grid>
+</Page>

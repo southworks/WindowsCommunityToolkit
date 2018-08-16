@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="ConnectedAnimationsTest.Page1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ConnectedAnimationsTest"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <ListView x:Name="MyListView"
+        animations:Connected.ListItemElementName="searchResultControl"
+        animations:Connected.ListItemKey="searchResult"
+        ItemsSource="{x:Bind SearchResults}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:Item">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Text}" />
+                        <Rectangle Width="200" Height="200" x:Name="searchResultControl" Fill="Coral" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <!--<Rectangle Width="200" Height="200" animations:Connected.Key="searchResult" Fill="Coral" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>-->
+    </Grid>
+</Page>
