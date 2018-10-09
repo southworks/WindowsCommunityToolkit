@@ -1,36 +1,49 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Forms;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using WebViewControlNavigationStartingEventArgs = Microsoft.Toolkit.Win32.UI.Controls.Interop.WinRT.WebViewControlNavigationStartingEventArgs;
 
 namespace Microsoft.Toolkit.Services.PlatformSpecific.NetFramework
 {
-    public partial class PopupForm : Form
+    /// <summary>
+    /// Interaction logic for PopupWPF.xaml
+    /// </summary>
+    public partial class PopupWPF : Window
     {
+
         private string initialHost;
         public Uri actualUrl;
         private string callbackHost;
 
-        public PopupForm(Uri callbackUrl)
+        public Func<object, object, object> FormClosed { get; internal set; }
+
+        public PopupWPF(Uri callbackUrl)
         {
             InitializeComponent();
-            webBrowser1.AllowNavigation = true;
-            webBrowser1.Navigating += webBrowserNavigating;
+         
+            WebView1.NavigationStarting += WebViewNavigationStarting;
             callbackHost = GetTopLevelDomain(callbackUrl);
         }
 
-        private void webBrowserNavigating(object sender, WebBrowserNavigatingEventArgs e)
+        private void WebViewNavigationStarting(object sender, WebViewControlNavigationStartingEventArgs e)
         {
-            if (initialHost != GetTopLevelDomain(e.Url))
+            if (initialHost != GetTopLevelDomain(e.Uri))
             {
-                if (GetTopLevelDomain(e.Url) == callbackHost)
+                if (GetTopLevelDomain(e.Uri) == callbackHost)
                 {
-                    actualUrl = e.Url;
+                    actualUrl = e.Uri;
                 }
 
                 this.Close();
@@ -40,13 +53,9 @@ namespace Microsoft.Toolkit.Services.PlatformSpecific.NetFramework
         public void navigateTo(string url)
         {
             initialHost = GetTopLevelDomain(url);
-            webBrowser1.Navigate(url);
+            WebView1.Navigate(url);
         }
 
-        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-
-        }
 
         private string GetTopLevelDomain(string url)
         {
@@ -65,3 +74,4 @@ namespace Microsoft.Toolkit.Services.PlatformSpecific.NetFramework
         }
     }
 }
+
