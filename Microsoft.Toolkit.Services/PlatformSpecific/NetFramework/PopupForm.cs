@@ -56,6 +56,7 @@ namespace Microsoft.Toolkit.Services.PlatformSpecific.NetFramework
         /// </summary>
         /// <param name="url">Url string to navigate to.</param>
         /// 
+
         public void NavigateTo(string url)
         {
             initialHost = GetTopLevelDomain(url);
