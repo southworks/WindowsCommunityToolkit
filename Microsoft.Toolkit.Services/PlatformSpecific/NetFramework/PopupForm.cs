@@ -16,18 +16,15 @@ namespace Microsoft.Toolkit.Services.PlatformSpecific.NetFramework
     {
         private string initialHost;
 
-        private Uri actualUrl;
+        public  Uri actualUrl;
         private string callbackHost;
-
-        /// <summary>
-        /// Gets or sets the actual url.
-        /// </summary>
         public Uri ActualUrl { get => actualUrl; set => actualUrl = value; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PopupForm"/> class.
         /// </summary>
         /// <param name="callbackUrl">Uri callback url</param>
+
         public PopupForm(Uri callbackUrl)
         {
             InitializeComponent();
@@ -58,6 +55,8 @@ namespace Microsoft.Toolkit.Services.PlatformSpecific.NetFramework
         /// Loads a given url in the WebBrowser
         /// </summary>
         /// <param name="url">Url string to navigate to.</param>
+        /// 
+
         public void NavigateTo(string url)
         {
             initialHost = GetTopLevelDomain(url);
