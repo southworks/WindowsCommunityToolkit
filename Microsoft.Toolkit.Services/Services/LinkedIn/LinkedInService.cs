@@ -9,9 +9,11 @@ using Microsoft.Toolkit.Services.Core;
 #if WINRT
 using Microsoft.Toolkit.Services.PlatformSpecific.Uwp;
 #endif
+
 #if WINFORMS
 using Microsoft.Toolkit.Services.PlatformSpecific.NetFramework;
 #endif
+
 namespace Microsoft.Toolkit.Services.LinkedIn
 {
     /// <summary>
