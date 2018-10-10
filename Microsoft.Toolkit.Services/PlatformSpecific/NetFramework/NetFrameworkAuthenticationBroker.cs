@@ -49,11 +49,11 @@ namespace Microsoft.Toolkit.Services.PlatformSpecific.NetFramework
             popupForm = new PopupForm(callbackUri);
             popupForm.FormClosed += (sender, e) =>
             {
+
                 taskCompletionSource.SetResult(HandleExit(popupForm.actualUrl));
             };
-
             popupForm.Show();
-            popupForm.navigateTo(requestUri.AbsoluteUri);
+            popupForm.NavigateTo(requestUri.AbsoluteUri);
             return taskCompletionSource.Task;
         }
 
