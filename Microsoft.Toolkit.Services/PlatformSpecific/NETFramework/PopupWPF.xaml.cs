@@ -71,7 +71,6 @@ namespace Microsoft.Toolkit.Services.PlatformSpecific.NetFramework
 
         private string GetTopLevelDomain(Uri url)
         {
-
             var hostParts = url.Host.Split('.').Select(x => x.ToString());
             if (hostParts.Count() > 1)
             {

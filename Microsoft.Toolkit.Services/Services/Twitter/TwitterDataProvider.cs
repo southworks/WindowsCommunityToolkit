@@ -276,17 +276,31 @@ namespace Microsoft.Toolkit.Services.Twitter
         /// <summary>
         /// Log user out of Twitter.
         /// </summary>
+        [Obsolete("Logout is deprecated, please use LogoutAsync instead.", true)]
         public void Logout()
+        {
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+            LogoutAsync();
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+        }
+
+        /// <summary>
+        /// Log user out of Twitter.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
+        public async Task<bool> LogoutAsync()
         {
             var credential = _passwordManager.Get("TwitterAccessToken");
 
             if (credential != null)
             {
                 _passwordManager.Remove("TwitterAccessToken");
-                _storageManager.SetAsync("TwitterScreenName", null);
+                await _storageManager.SetAsync("TwitterScreenName", null);
                 UserScreenName = null;
                 LoggedIn = false;
             }
+
+            return LoggedIn;
         }
 
         /// <summary>
