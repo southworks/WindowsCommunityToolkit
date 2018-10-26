@@ -85,7 +85,7 @@
       <controls:GridSplitter.RenderTransform>
         <TranslateTransform X="-8" />
       </controls:GridSplitter.RenderTransform>
-
+        
     </controls:GridSplitter>
 
     <!--Row Grid Splitter-->
@@ -98,7 +98,8 @@
         <TranslateTransform Y="-8" />
       </controls:GridSplitter.RenderTransform>
       <controls:GridSplitter.Element>
-        <Grid>
+
+   
           <TextBlock HorizontalAlignment="Center"
                          IsHitTestVisible="False"
                          VerticalAlignment="Center"
@@ -106,7 +107,7 @@
                          Foreground="White"
                          FontFamily="Segoe MDL2 Assets">
           </TextBlock>
-        </Grid>
+      
       </controls:GridSplitter.Element>
     </controls:GridSplitter>
     

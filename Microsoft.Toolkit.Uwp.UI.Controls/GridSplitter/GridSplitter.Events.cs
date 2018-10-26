@@ -20,17 +20,20 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
         private const string GripperBarVertical = "\xE784";
         private const string GripperBarHorizontal = "\xE76F";
         private const string GripperDisplayFont = "Segoe MDL2 Assets";
+        private const string RootGridPart = "RootGrid";
 
         private void GridSplitter_Loaded(object sender, RoutedEventArgs e)
         {
             _resizeDirection = GetResizeDirection();
             _resizeBehavior = GetResizeBehavior();
+            bool isElementUpdated = false;
 
             // Adding Grip to Grid Splitter
             if (Element == default(UIElement))
             {
                 CreateGripperDisplay();
                 Element = _gripperDisplay;
+                isElementUpdated = true;
             }
 
             if (_hoverWrapper == null)
@@ -46,6 +49,12 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
                 ManipulationCompleted += hoverWrapper.SplitterManipulationCompleted;
 
                 _hoverWrapper = hoverWrapper;
+                isElementUpdated = true;
+            }
+
+            if (GetTemplateChild(RootGridPart) is UIElement rootGrid && isElementUpdated)
+            {
+                rootGrid.UpdateLayout();
             }
         }
 
