@@ -188,8 +188,6 @@ namespace Microsoft.Toolkit.Uwp.UI.Controls
             ManipulationStarted += GridSplitter_ManipulationStarted;
             ManipulationCompleted += GridSplitter_ManipulationCompleted;
 
-            _hoverWrapper?.UnhookEvents();
-
             ManipulationMode = ManipulationModes.TranslateX | ManipulationModes.TranslateY;
         }
 
